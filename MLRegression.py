@@ -1,7 +1,7 @@
 import pandas as pd
 import quandl, math
 import numpy as np
-from sklearn import preprocessing, svm
+from sklearn import preprocessing, svm, cross_validation
 from sklearn.linear_model import LinearRegression
 
 df = quandl.get("WIKI/GOOGL")
@@ -28,8 +28,7 @@ X = np.array(df.drop(['label'],1))
 y = np.array(df['label'])
 # - Dette step kan nogle gange skippes
 X = preprocessing.scale(X)
-df.dropna(inplace=True)
 y = np.array(df['label'])
 
-print(len(X), len(y))
-
+#0.2 definerer hvor meget af vores data vi vil bruge som test. 
+X_train, X_test, y_trian, y_test = cross_validation.train_test_split(X,y,test_size=0.2)
