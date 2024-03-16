@@ -34,7 +34,8 @@ y = np.array(df['label'])
 #0.2 definerer hvor meget af vores data vi vil bruge som test. 
 X_train, X_test, y_train, y_test = model_selection.train_test_split(X,y,test_size=0.2)
 
-clf = LinearRegression()
+#Du kan vitterligt bare skrifte fra LinearRegression() til svm.SVR() og så virker det
+clf = svm.SVR()
 clf.fit(X_train, y_train)
 accuracy = clf.score(X_test, y_test)
 
