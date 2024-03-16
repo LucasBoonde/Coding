@@ -32,3 +32,5 @@ df.dropna(inplace=True)
 y = np.array(df['label'])
 
 print(len(X), len(y))
+
+add1 = 10 + 1
