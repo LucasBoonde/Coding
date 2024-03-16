@@ -1,8 +1,9 @@
 import pandas as pd
 import quandl, math
 import numpy as np
-from sklearn import preprocessing, svm, cross_validation
+from sklearn import preprocessing, svm, model_selection
 from sklearn.linear_model import LinearRegression
+
 
 df = quandl.get("WIKI/GOOGL")
 df = df[['Adj. Open', 'Adj. High', 'Adj. Low', 'Adj. Close', 'Adj. Volume', ]]
@@ -31,4 +32,10 @@ X = preprocessing.scale(X)
 y = np.array(df['label'])
 
 #0.2 definerer hvor meget af vores data vi vil bruge som test. 
-X_train, X_test, y_trian, y_test = cross_validation.train_test_split(X,y,test_size=0.2)
+X_train, X_test, y_train, y_test = model_selection.train_test_split(X,y,test_size=0.2)
+
+clf = LinearRegression()
+clf.fit(X_train, y_train)
+accuracy = clf.score(X_test, y_test)
+
+print(accuracy)
