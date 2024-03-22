@@ -50,8 +50,16 @@ linear_est = tf.estimator.LinearClassifier(feature_columns=feature_columns)
 linear_est.train(train_input_fn) #Træner på vores Træningsdata
 result = linear_est.evaluate(eval_input_fn)
 
+#Making Predictions:
+
+
 os.system('cls')
 print(result['accuracy'])
+
+result = list(linear_est.predict(eval_input_fn))
+print(dfeval.loc[0])
+print(y_eval.loc[0])
+print(result[0]['probabilities'][1])
 
 
 
